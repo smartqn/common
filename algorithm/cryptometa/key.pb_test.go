@@ -3,7 +3,7 @@ package cryptometa
 import (
 	"testing"
 
-	"smartqn/algorithm/rsa"
+	"smartqn/common/algorithm/rsa"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/linnv/logx"
