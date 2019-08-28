@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package cryptometa;
+
+message License {
+  string LicenseID = 1;
+  int64 SecondsLimit = 2;
+  int64 SecondsUsed = 3;
+}
+
