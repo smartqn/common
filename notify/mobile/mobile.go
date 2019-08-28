@@ -8,8 +8,8 @@ import (
 	"net/http/httputil"
 	"strings"
 
-	"smartqn/config"
-	"smartqn/util"
+	"smartqn/common/config"
+	"smartqn/common/util"
 	"time"
 
 	"github.com/linnv/logx"
