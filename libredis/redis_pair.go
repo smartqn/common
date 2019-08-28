@@ -18,8 +18,8 @@ import (
 	"time"
 
 	"github.com/aiwuTech/fileLogger"
-	redigo "github.com/garyburd/redigo/redis"
 	"github.com/linnv/logx"
+	redigo "github.com/smartqn/redisgofix"
 )
 
 const (

@@ -6,7 +6,7 @@ import (
 
 	"github.com/linnv/logx"
 
-	"smartqn/common/notify/mobile"
+	"github.com/smartqn/common/notify/mobile"
 )
 
 // type Notify struct {

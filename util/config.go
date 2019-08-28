@@ -15,7 +15,7 @@ func curFile(addLevel int) string {
 		var filename string
 		for i := 0; i < 20; i++ {
 			_, filename, _, _ = runtime.Caller(i)
-			if strings.HasSuffix(filename, "smartqn/util/config.go") {
+			if strings.HasSuffix(filename, "config/config.go") {
 				_level = i + 1
 				break
 			}
