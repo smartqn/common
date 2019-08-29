@@ -8,9 +8,10 @@ import (
 	"net/http/httputil"
 	"strings"
 
-	"smartqn/common/config"
-	"smartqn/common/util"
 	"time"
+
+	"github.com/smartqn/common/config"
+	"github.com/smartqn/common/util"
 
 	"github.com/linnv/logx"
 	uuid "github.com/satori/go.uuid"
