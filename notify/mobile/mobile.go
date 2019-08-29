@@ -57,11 +57,7 @@ func (m *Mobile) Send() error {
 		return nil
 	}
 	const splitQuota = ";;"
-	msgUUID, err := uuid.NewV4()
-	if err != nil {
-		logx.Warnf("create uuid err: %s\n", err.Error())
-		return err
-	}
+	msgUUID := uuid.NewV4()
 	qnzsMsgID := m.EnterpriseID + splitQuota + msgUUID.String()
 	if len(qnzsMsgID) > MAX_MSG_TEX_LEN {
 		qnzsMsgID = qnzsMsgID[:MAX_MSG_TEX_LEN]
