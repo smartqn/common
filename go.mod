@@ -1,3 +1,3 @@
-module github.com/smartqn/common.abk909
+module github.com/smartqn/common
 
 go 1.12
