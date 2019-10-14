@@ -36,22 +36,22 @@ func initConfig(bs []byte) (config *Configuration, err error) {
 	}
 
 	if config.SmsSrvAddr == "" {
-		config.SmsSrvAddr = "http://39.106.59.58:9999"
+		panic("SmsSrvAddr can't be empty")
 	}
 	if config.MsgSendApi == "" {
 		config.MsgSendApi = "/esms/sendsms"
 	}
 	if config.SMSIndustryAccount == "" {
-		config.SMSIndustryAccount = "a00038"
+		panic("SMSIndustryAccount can't be empty")
 	}
 	if config.SMSIndustryPassword == "" {
-		config.SMSIndustryPassword = "qn123456"
+		panic("SMSIndustryPassword can't be empty")
 	}
 	if config.SMSMarketAccount == "" {
-		config.SMSMarketAccount = "a00038"
+		panic("SMSMarketAccount can't be empty")
 	}
 	if config.SMSMarketPassword == "" {
-		config.SMSMarketPassword = "qn123456"
+		panic("SMSMarketPassword can't be empty")
 	}
 
 	rootConfig = config
