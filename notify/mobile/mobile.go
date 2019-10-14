@@ -15,7 +15,7 @@ import (
 	"github.com/smartqn/common/util"
 
 	"github.com/linnv/logx"
-	uuid "github.com/satori/go.uuid"
+	uuid "github.com/smartqn/go.uuid"
 )
 
 var conf = config.Config()

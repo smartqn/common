@@ -10,10 +10,10 @@ import (
 	"time"
 
 	"github.com/linnv/logx"
-	uuid "github.com/satori/go.uuid"
 	"github.com/smartqn/common/apistruct"
 	"github.com/smartqn/common/config"
 	"github.com/smartqn/common/util"
+	uuid "github.com/smartqn/go.uuid"
 )
 
 var httpClient = &http.Client{
