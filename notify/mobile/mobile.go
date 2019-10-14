@@ -4,6 +4,7 @@ package mobile
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/http/httputil"
 	"strings"
@@ -35,9 +36,14 @@ type Mobile struct {
 
 func NewMobile(sessID, eID, flowID, mobile, msg, tplID string) *Mobile {
 	flowID = strings.TrimPrefix(flowID, eID+"_")
+	var msgKind string
+	if util.InStrSlice(tplID, []string{"3", "4", "5"}) {
+		msgKind = SMSIndustryChan
+	}
 	return &Mobile{
 		Mobile:            mobile,
 		MessageTemplateID: tplID,
+		SMSChannel:        msgKind,
 		FlowID:            flowID,
 		SessionID:         sessID,
 		EnterpriseID:      eID,
@@ -52,12 +58,17 @@ func (m *Mobile) GetDetail() (instance interface{}, kind byte, err error) {
 	return m, NotifyTypeMobile, nil
 }
 
-func (m *Mobile) Send() error {
+func (m *Mobile) Send() (isSuc bool, noRetry bool, err error) {
 	if m == nil {
-		return nil
+		logx.Warnln("nil mobile obj")
+		return false, true, fmt.Errorf("nil mobile obj\n")
 	}
 	const splitQuota = ";;"
-	msgUUID := uuid.NewV4()
+	msgUUID, err := uuid.NewV4()
+	if err != nil {
+		logx.Warnf("create uuid err: %s\n", err.Error())
+		return false, false, err
+	}
 	qnzsMsgID := m.EnterpriseID + splitQuota + msgUUID.String()
 	if len(qnzsMsgID) > MAX_MSG_TEX_LEN {
 		qnzsMsgID = qnzsMsgID[:MAX_MSG_TEX_LEN]
@@ -67,11 +78,11 @@ func (m *Mobile) Send() error {
 	resp, err := Send(m.TextMsg, m.Mobile, m.SMSChannel, qnzsMsgID)
 	if err != nil {
 		logx.Warnf(" err: %+v\n", err)
-		return err
+		return false, false, err
 	}
 	_ = resp
 	logx.Debugf("send mobile msg %s\n", m.TextMsg)
-	return nil
+	return true, true, nil
 }
 
 type ReqMsgQn struct {
@@ -139,6 +150,10 @@ func smsDispatch(smsChannel string) (string, string) {
 func Send(c, mobile, smsChannel, qnzsID string) (respStruct RespMsgQn, err error) {
 	if conf == nil {
 		logx.Warnln("smartQn conf not init")
+		return
+	}
+	if c == "" || mobile == "" || qnzsID == "" {
+		logx.Warnf("invalid sms params. text: %s, mobile: %s, smsChannel: %s, qnzsID: %s\n", c, mobile, smsChannel, qnzsID)
 		return
 	}
 	reqUrl := conf.SmsSrvAddr + conf.MsgSendApi

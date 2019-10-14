@@ -7,6 +7,7 @@ import (
 	"github.com/linnv/logx"
 
 	"github.com/smartqn/common/notify/mobile"
+	"github.com/smartqn/common/notify/qn"
 )
 
 // type Notify struct {
@@ -15,7 +16,7 @@ import (
 // }
 
 type Notifier interface {
-	Send() error
+	Send() (isSuc bool, noRetry bool, err error)
 	GetDetail() (instance interface{}, kind byte, err error)
 }
 
@@ -42,6 +43,10 @@ func NewNotify(bs []byte) (n Notifier, err error) {
 		var mobile = new(mobile.Mobile)
 		err = json.Unmarshal(bs[notifyTypeIndex+1:], &mobile)
 		return mobile, err
+	case qn.NOTIFY_TYPE_QN_ROBOT:
+		var robotNotify = new(qn.QnNotify)
+		err = json.Unmarshal(bs[notifyTypeIndex+1:], &robotNotify)
+		return robotNotify, err
 	}
 
 	return
