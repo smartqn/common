@@ -14,6 +14,12 @@ type Configuration struct {
 	SMSMarketPassword   string `yaml:"smsMarketPassword"`
 	SmsSrvAddr          string `yaml:"smsSrvAddr"`
 	MsgSendApi          string `yaml:"msgSendApi"`
+	NotifyRobotAddr     string `yaml:"notifyRobotAddr"`
+	RobotFinishCallReq  string `yaml:"robotFinishCallReq"`
+	EnterpriseStr       string `yaml:"enterpriseStr"`
+	EnterpriseStrEx     string `yaml:"enterpriseStrEx"`
+	FlowIdStr           string `yaml:"flowIdStr"`
+	FlowIdStrEx         string `yaml:"flowIdStrEx"`
 }
 
 var once sync.Once

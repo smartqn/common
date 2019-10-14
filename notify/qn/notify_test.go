@@ -2,9 +2,10 @@ package qn
 
 import (
 	"io/ioutil"
-	"smartqn/common/apistruct"
-	"smartqn/config"
 	"testing"
+
+	"github.com/smartqn/common/apistruct"
+	"github.com/smartqn/common/config"
 )
 
 func TestQnNotify_Send(t *testing.T) {

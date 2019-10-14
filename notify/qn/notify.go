@@ -6,14 +6,14 @@ import (
 	"fmt"
 	"net/http"
 	"net/http/httputil"
-	"smartqn/common/apistruct"
-	"smartqn/config"
-	"smartqn/util"
 	"strings"
 	"time"
 
 	"github.com/linnv/logx"
 	uuid "github.com/satori/go.uuid"
+	"github.com/smartqn/common/apistruct"
+	"github.com/smartqn/common/config"
+	"github.com/smartqn/common/util"
 )
 
 var httpClient = &http.Client{
