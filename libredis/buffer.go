@@ -16,7 +16,7 @@ const PrefixConfigRobot = "ConfigRobot_"
 
 const ErrorRedis = -100
 
-func GetConfigRobot(client *RedisPair, enterpriseID string) (err error, config *ConfigRobot) {
+func GetConfigRobot(client *RedisOpt, enterpriseID string) (err error, config *ConfigRobot) {
 	if client == nil {
 		return
 	}
