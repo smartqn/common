@@ -1,0 +1,12 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.13
+    working_directory: /go/src/github.com/smartqn/common
+    steps:
+      - checkout
+      - run: 
+          name: "Run Test"
+          command: go test ./...
